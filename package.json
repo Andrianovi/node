@@ -1,6 +1,7 @@
 {
 	"name": "node",
 	"scripts": {
-		"start": "node https://andrianovi.github.io/node/index.js"
+		"start": "https://andrianovi.github.io/node/index.js"
 	}
+
 }
