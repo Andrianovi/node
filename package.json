@@ -1,6 +1,7 @@
 {
 	"name": "node",
 	"scripts": {
-		"start": "node ./index.js --port=httpsgithub.comAndrianovinode.git --hostname=httpsgithub.comAndrianovinode.git"
+		"start": "node ./index.js"
 	}
+
 }
