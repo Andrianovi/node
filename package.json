@@ -1,7 +1,0 @@
-{
-	"name": "node",
-	"scripts": {
-		"start": "node ./index.js"
-	}
-
-}
