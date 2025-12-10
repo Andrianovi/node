@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Авто-сохранение заметки</title>
+</head>
+
+<body>
+
+	<textarea id="text" cols="40" rows="10"></textarea>
+	<br>
+	<button onclick="saveFile()">Скачать файл (резерв)</button>
+	<input type="file" id="fileInput" accept=".txt" onchange="loadFile()">
+
+	<script>
+		// Автозагрузка при входе
+		window.onload = () => {
+			const savedText = localStorage.getItem('note');
+			if (savedText) {
+				document.getElementById('text').value = savedText;
+			}
+		};
+
+		// Авто-сохранение каждые 2 секунды
+		setInterval(() => {
+			const text = document.getElementById('text').value;
+			localStorage.setItem('note', text);
+		}, 2000);
+
+		// Сохранение в файл
+		function saveFile() {
+			const text = document.getElementById('text').value;
+			const blob = new Blob([text], { type: 'text/plain' });
+			const link = document.createElement('a');
+			link.href = URL.createObjectURL(blob);
+			link.download = "note.txt";
+			link.click();
+			URL.revokeObjectURL(link.href);
+		}
+
+		// Ручная загрузка файла
+		function loadFile() {
+			const file = document.getElementById('fileInput').files[0];
+			const reader = new FileReader();
+			reader.onload = () => {
+				document.getElementById('text').value = reader.result;
+				localStorage.setItem('note', reader.result);
+			};
+			reader.readAsText(file);
+		}
+	</script>
+
+</body>
+
+</html>
